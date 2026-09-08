@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VK Online Services | Design • Edit • Create</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050b10;
+    color:#fff;
+    line-height:1.5;
+}
+a{text-decoration:none;color:inherit}
+.container{width:92%;max-width:1200px;margin:auto}
+
+/* NAVBAR */
+nav{
+    position:sticky;top:0;z-index:1000;
+    background:rgba(3,8,12,.96);
+    border-bottom:1px solid #26333d;
+    padding:15px 0;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:38px;font-weight:900;font-style:italic;letter-spacing:-5px}
+.logo .v{color:white}.logo .k{color:#ffd21a}
+.logo small{display:block;font-size:10px;letter-spacing:1px;color:white;font-style:normal;margin-left:34px;margin-top:-7px}
+nav ul{display:flex;gap:28px;list-style:none}
+nav li a{font-weight:bold;font-size:14px}
+nav li a:hover{color:#ffd21a}
+.menu{display:none;font-size:28px;cursor:pointer}
+
+/* HERO */
+.hero{
+    min-height:700px;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 80% 25%,rgba(255,210,26,.12),transparent 25%),
+      linear-gradient(135deg,#050a0e,#08141d);
+}
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    align-items:center;
+    gap:40px;
+    padding:80px 0;
+}
+.badge{color:#ffd21a;font-weight:bold;letter-spacing:2px;margin-bottom:18px}
+.hero h1{
+    font-size:clamp(52px,8vw,92px);
+    line-height:.95;
+    letter-spacing:-5px;
+}
+.hero h1 span{color:#ffd21a}
+.hero-sub{
+    margin-top:25px;
+    text-transform:uppercase;
+    letter-spacing:4px;
+    font-size:18px;
+}
+.hero-tags{color:#b9c3ca;margin-top:7px;letter-spacing:2px}
+.paint{
+    display:inline-block;
+    background:#ffd21a;
+    color:#080b0d;
+    font-size:21px;
+    font-weight:900;
+    padding:10px 28px;
+    margin-top:28px;
+    transform:rotate(-1deg);
+    border-radius:4px;
+}
+.buttons{margin-top:35px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+    padding:13px 22px;
+    border-radius:9px;
+    font-weight:bold;
+    border:1px solid #596873;
+}
+.btn-yellow{background:#ffd21a;color:#080b0d;border-color:#ffd21a}
+.btn:hover{transform:translateY(-2px)}
+.vk-logo{
+    text-align:center;
+    font-size:250px;
+    font-weight:900;
+    font-style:italic;
+    letter-spacing:-40px;
+    transform:rotate(-8deg);
+}
+.vk-logo .v{color:white}.vk-logo .k{color:#ffd21a}
+.crown{color:#ffd21a;font-size:60px;text-align:center;margin-bottom:-55px}
+.hero-note{
+    text-align:right;
+    font-family:cursive;
+    font-size:25px;
+    color:#fff;
+    transform:rotate(-5deg);
+}
+.hero-note span{color:#ffd21a}
+
+/* SECTIONS */
+section{padding:90px 0}
+.heading{text-align:center;max-width:750px;margin:0 auto 45px}
+.heading .mini{color:#ffd21a;font-weight:bold;letter-spacing:3px;font-size:12px}
+.heading h2{font-size:48px;line-height:1.05;margin:8px 0}
+.heading h2 span{color:#ffd21a}
+.heading p{color:#aeb9c1}
+
+/* SERVICES */
+.services{background:#071017}
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+.card{
+    background:linear-gradient(145deg,#0b1821,#071016);
+    border:1px solid #2a3943;
+    border-radius:18px;
+    padding:27px;
+    transition:.25s;
+}
+.card:hover{
+    transform:translateY(-7px);
+    border-color:#ffd21a;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+.icon{
+    width:56px;height:56px;border-radius:15px;
+    display:grid;place-items:center;
+    font-size:23px;font-weight:900;
+    margin-bottom:17px;
+}
+.blue{background:#159bdc}.yellow{background:#e9bd00;color:#111}
+.pink{background:#db268f}.green{background:#07964f}
+.red{background:#dc302d}.purple{background:#7b36df}
+.card h3{font-size:21px;margin-bottom:9px}
+.card>p{font-size:14px;color:#b3bdc4;min-height:43px}
+.card ul{list-style:none;margin:18px 0;font-size:13px;color:#d7dde1}
+.card li{margin:7px 0}
+.card li:before{content:"✓";color:#ffd21a;font-weight:bold;margin-right:8px}
+.price{
+    display:inline-block;
+    background:#ffd21a;
+    color:#080b0d;
+    font-weight:900;
+    border-radius:20px;
+    padding:8px 15px;
+    margin-top:3px;
+}
+.price small{font-size:10px}
+.order{
+    display:block;
+    margin-top:18px;
+    color:#ffd21a;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* WHY */
+.why{
+    background:linear-gradient(135deg,#091118,#04090d);
+}
+.why-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+.why h2{font-size:52px;line-height:1.05}
+.why h2 span{color:#ffd21a}
+.why-text{color:#aeb9c1;margin-top:20px}
+.features{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+.feature{
+    padding:22px;
+    background:#0a151d;
+    border:1px solid #2b3a44;
+    border-radius:15px;
+}
+.feature b{display:block}
+.feature span{color:#ffd21a;font-size:28px}
+.feature small{color:#89969e}
+
+/* CONTACT */
+.contact{
+    background:#071017;
+}
+.contact-box{
+    border:1px solid #34444e;
+    border-radius:22px;
+    padding:45px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+}
+.contact-box h2{font-size:45px}
+.contact-box p{color:#aeb9c1;margin-top:10px}
+.contact-links{display:flex;gap:12px;flex-wrap:wrap}
+.contact-link{
+    border:1px solid #34444e;
+    border-radius:13px;
+    padding:15px 18px;
+    min-width:245px;
+}
+.contact-link:hover{border-color:#ffd21a}
+.contact-link small{display:block;color:#8d9aa2;font-size:10px}
+.contact-link strong{font-size:14px}
+
+/* FOOTER */
+footer{
+    border-top:1px solid #25323b;
+    padding:25px 0;
+    color:#8c979e;
+    font-size:12px;
+    text-align:center;
+}
+footer strong{color:#ffd21a;font-size:19px}
+
+/* FLOATING */
+.float{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    z-index:999;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+}
+.float a{
+    width:50px;height:50px;
+    border-radius:50%;
+    background:#ffd21a;
+    color:#080b0d;
+    display:grid;
+    place-items:center;
+    font-weight:900;
+    font-size:20px;
+}
+
+/* MOBILE */
+@media(max-width:850px){
+    nav ul{
+        display:none;
+        position:absolute;
+        top:70px;left:0;right:0;
+        background:#071017;
+        flex-direction:column;
+        padding:20px;
+        border-bottom:1px solid #26333d;
+    }
+    nav ul.show{display:flex}
+    .menu{display:block}
+    .hero-grid{grid-template-columns:1fr;padding:65px 0}
+    .vk-logo{font-size:170px}
+    .cards{grid-template-columns:1fr 1fr}
+    .why-grid{grid-template-columns:1fr}
+    .contact-box{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:560px){
+    section{padding:70px 0}
+    .cards{grid-template-columns:1fr}
+    .features{grid-template-columns:1fr}
+    .contact-box{padding:28px}
+    .contact-box h2{font-size:35px}
+    .contact-link{min-width:100%;width:100%}
+    .hero h1{font-size:56px}
+    .vk-logo{font-size:145px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+<div class="container nav-inner">
+    <a href="#home" class="logo">
+        <span class="v">V</span><span class="k">K</span>
+        <small>Online Services</small>
+    </a>
+
+    <div class="menu" onclick="toggleMenu()">☰</div>
+
+    <ul id="navMenu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why">Why VK</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<div class="container hero-grid">
+
+    <div>
+        <div class="badge">👑 VK ONLINE SERVICES</div>
+
+        <h1>Your Ideas<br><span>My Design</span></h1>
+
+        <div class="hero-sub">Professional Online Services</div>
+        <div class="hero-tags">Creative &nbsp; • &nbsp; Fast &nbsp; • &nbsp; Affordable</div>
+
+        <div class="paint">
+            Design • Edit • Create • Convert
+        </div>
+
+        <div class="buttons">
+            <a href="#services" class="btn btn-yellow">View Services</a>
+            <a href="https://wa.me/919315933090" class="btn">WhatsApp Now</a>
+        </div>
+    </div>
+
+    <div>
+        <div class="hero-note">Small Work<br>Big <span>Impact</span> ✦</div>
+        <div class="crown">♕</div>
+        <div class="vk-logo">
+            <span class="v">V</span><span class="k">K</span>
+        </div>
+    </div>
+
+</div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+<div class="container">
+
+<div class="heading">
+    <div class="mini">MY SERVICES</div>
+    <h2>Design • Edit • <span>Create • Convert</span></h2>
+    <p>Professional, creative and affordable online services.</p>
+</div>
+
+<div class="cards">
+
+<!-- 1 -->
+<div class="card">
+    <div class="icon blue">▣</div>
+    <h3>Resume / CV Design</h3>
+    <p>Professional | Modern | ATS Friendly</p>
+    <ul>
+        <li>Professional Resume Design</li>
+        <li>Internship / Fresher / Experienced</li>
+        <li>Cover Letter (Optional)</li>
+        <li>PDF + Editable Word</li>
+    </ul>
+    <div class="price">₹200 – 500 <small>(Per Resume)</small></div>
+    <a href="#contact" class="order">Order Now →</a>
+</div>
+
+<!-- 2 -->
+<div class="card">
+    <div class="icon yellow">▧</div>
+    <h3>Poster / Flyer Design</h3>
+    <p>Business | Event | Promotional | Social Media</p>
+    <ul>
+        <li>Attractive & Creative Designs</li>
+        <li>High Quality (HD)</li>
+        <li>Custom Size & Format</li>
+        <li>Fast Delivery</li>
+    </ul>
+    <div class="price">₹200 – 500 <small>(Per Design)</small></div>
+    <a href="#contact" class="order">Order Now →</a>
+</div>
+
+<!-- 3 -->
+<div class="card">
+    <div class="icon pink">◎</div>
+    <h3>Instagram Post Design</h3>
+    <p>Attractive | Engaging | Creative</p>
+    <ul>
+        <li>Feed Posts</li>
+        <li>Stories</li>
+        <li>Reels Cover</li>
+        <li>Carousel Posts</li>
+        <li>Custom Design</li>
+    </ul>
+    <div class="price">₹100 – 300 <small>(Per Post)</small></div>
+    <a href="#contact" class="order">Order Now →</a>
+</div>
+
+<!-- 4 -->
+<div class="card">
+    <div class="icon green">X</div>
+    <h3>Excel Data Entry / Formatting</h3>
+    <p>Accurate | Fast | Reliable</p>
+    <ul>
+        <li>Data Entry (Manual / PDF to Excel)</li>
+        <li>Excel Sheet Formatting</li>
+        <li>Data Cleaning & Validation</li>
+        <li>Formula & Calculation Work</li>
+        <li>Charts & Graphs</li>
+        <li>Pivot Table</li>
+        <li>Report Preparation</li>
+        <li>File Conversion (PDF to Excel/Word)</li>
+    </ul>
+    <div class="price">₹300 – 1,000 <small>(Per Work)</small></div>
+    <a href="#contact" class="order">Order Now →</a>
+</div>
+
+<!-- 5 -->
+<div class="card">
+    <div class="icon red">PDF</div>
+    <h3>PDF → Word / Excel Conversion</h3>
+    <p>Quick | Accurate | Professional</p>
+    <ul>
+        <li>PDF to Word</li>
+        <li>PDF to Excel</li>
+        <li>Scanned PDF (OCR)</li>
+        <li>Editable & Formatted File</li>
+        <li>100% Data Accuracy</li>
+    </ul>
+    <div class="price">₹200 – 800 <small>(Per File)</small></div>
+    <a href="#contact" class="order">Order Now →</a>
+</div>
+
+<!-- 6 -->
+<div class="card">
+    <div class="icon purple">◈</div>
+    <h3>Basic Photo Editing</h3>
+    <p>Enhance | Retouch | Clean | Color Correction</p>
+    <ul>
+        <li>Background Change</li>
+        <li>Photo Retouching</li>
+        <li>Skin Clean & Smooth</li>
+        <li>Color Correction</li>
+        <li>Remove Objects</li>
+    </ul>
+    <div class="price">₹100 – 500 <small>(Per Photo)</small></div>
+    <a href="#contact" class="order">Order Now →</a>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- WHY VK -->
+<section class="why" id="why">
+<div class="container why-grid">
+
+<div>
+    <div class="heading" style="text-align:left;margin:0">
+        <div class="mini">WHY CHOOSE VK?</div>
+        <h2>Let's Work<br><span>Together</span></h2>
+    </div>
+    <p class="why-text">
+        Professional • Creative • Reliable.  
+        Your work is handled with care, quality and attention to detail.
+    </p>
+</div>
+
+<div class="features">
+    <div class="feature">
+        <span>◷</span>
+        <b>On-Time Delivery</b>
+        <small>Fast & timely work</small>
+    </div>
+
+    <div class="feature">
+        <span>♢</span>
+        <b>100% Quality Work</b>
+        <small>Professional output</small>
+    </div>
+
+    <div class="feature">
+        <span>∞</span>
+        <b>Unlimited Revisions*</b>
+        <small>Until satisfied</small>
+    </div>
+
+    <div class="feature">
+        <span>₹</span>
+        <b>Budget Friendly Prices</b>
+        <small>Affordable services</small>
+    </div>
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+<div class="container">
+
+<div class="contact-box">
+    <div>
+        <div class="badge">LET'S WORK TOGETHER</div>
+        <h2>Start Your Project</h2>
+        <p>DM / WhatsApp now and share your requirements.</p>
+    </div>
+
+    <div class="contact-links">
+
+        <a class="contact-link" href="https://wa.me/919315933090" target="_blank">
+            <small>WHATSAPP</small>
+            <strong>📱 9315933090</strong>
+        </a>
+
+        <a class="contact-link" href="tel:+918745033090">
+            <small>CALLING</small>
+            <strong>☎️ 8745033090</strong>
+        </a>
+
+        <a class="contact-link" href="mailto:mrsachin3090@gmail.com">
+            <small>MAIL ID</small>
+            <strong>✉️ mrsachin3090@gmail.com</strong>
+        </a>
+
+        <a class="contact-link" href="https://instagram.com/vk_creates" target="_blank">
+            <small>INSTAGRAM</small>
+            <strong>◎ @vk_creates</strong>
+        </a>
+
+    </div>
+</div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="container">
+    <strong>VK</strong> &nbsp; | &nbsp;
+    Professional &nbsp; • &nbsp; Creative &nbsp; • &nbsp; Reliable
+    <br><br>
+    © <span id="year"></span> VK Online Services. All Rights Reserved.
+</div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="float">
+    <a href="https://wa.me/919315933090" target="_blank" title="WhatsApp">☏</a>
+    <a href="https://instagram.com/vk_creates" target="_blank" title="Instagram">◎</a>
+</div>
+
+<script>
+function toggleMenu(){
+    document.getElementById("navMenu").classList.toggle("show");
+}
+
+document.querySelectorAll("#navMenu a").forEach(function(link){
+    link.addEventListener("click",function(){
+        document.getElementById("navMenu").classList.remove("show");
+    });
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
